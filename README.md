@@ -23,3 +23,18 @@ pip install -r requirements.txt
 ```sql
 cat setup_mysql_dev.sql | sudo mysql -p
 ```
+
+- Set the necessary environment variables needed in the ~/.bashrc file
+
+```shell
+export CATALYST_DB='catalystcrowd_db' >> ~/.bashrc
+export CATALYST_USER='catalyst_user' >> ~/.bashrc
+export CATALYST_PWD='catalyst_pwd' >> ~/.bashrc
+export CATALYST_HOST='localhost' >> ~/.bashrc
+```
+
+- Source the ~/.bashrc file
+
+```shell
+source ~/.bashrc
+```
