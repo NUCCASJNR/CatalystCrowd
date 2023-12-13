@@ -17,3 +17,9 @@ source venv_name/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+- Setup the Mysql User and database
+
+```sql
+cat setup_mysql_dev.sql | sudo mysql -p
+```
