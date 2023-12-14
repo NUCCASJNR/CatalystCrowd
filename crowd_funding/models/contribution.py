@@ -11,3 +11,6 @@ class Contribution(BaseModel):
     user_id = models.ForeignKey(CustomUser,  on_delete=models.CASCADE, blank=False, db_column='user_id')
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE, blank=False, db_column='project_id')
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    class Meta:
+        db_table = 'contributions'

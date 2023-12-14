@@ -3,7 +3,7 @@
 """Contains user model."""
 
 from crowd_funding.models.base_model import BaseModel, models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 
 class CustomUser(AbstractUser, BaseModel):
@@ -15,6 +15,11 @@ class CustomUser(AbstractUser, BaseModel):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     profile_picture = models.ImageField(max_length=255, null=True)
+
+    groups = models.ManyToManyField(Group, blank=True, related_name='crowdfunding_user_groups')
+
+    # Add related_name to resolve clashes with auth.User.user_permissions
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='crowdfunding_user_permissions')
 
     class Meta:
         """Meta class"""
