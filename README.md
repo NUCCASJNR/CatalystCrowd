@@ -27,10 +27,10 @@ cat setup_mysql_dev.sql | sudo mysql -p
 - Set the necessary environment variables needed in the ~/.bashrc file
 
 ```shell
-export CATALYST_DB='catalystcrowd_db' >> ~/.bashrc
-export CATALYST_USER='catalyst_user' >> ~/.bashrc
-export CATALYST_PWD='catalyst_pwd' >> ~/.bashrc
-export CATALYST_HOST='localhost' >> ~/.bashrc
+echo "export CATALYST_DB='catalystcrowd_db'" >> ~/.bashrc
+echo "export CATALYST_USER='catalyst_user'" >> ~/.bashrc
+echo "export CATALYST_PWD='catalyst_pwd'" >> ~/.bashrc
+echo "export CATALYST_HOST='localhost'" >> ~/.bashrc
 ```
 
 - Source the ~/.bashrc file
