@@ -23,6 +23,9 @@ class Project(BaseModel):
     project_picture = models.ImageField(blank=True)
     amount_left = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+    class Meta:
+        db_table = 'projects'
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.raised_amount is None:
