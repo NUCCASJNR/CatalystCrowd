@@ -87,7 +87,7 @@ class BaseModel(models.Model):
         """
         
         model_dict = {}
-        for field in obj._meta.fields():
+        for field in obj._meta.fields:
             field_name = field.name
             field_value = getattr(obj, field_name)
             # convert special types to a serializable format if needed
