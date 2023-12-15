@@ -28,6 +28,11 @@ class BaseModel(models.Model):
         return instance
 
     @classmethod
+    def get_all(cls):
+        """Get all objs of a cls"""
+        return cls.objects.all()
+
+    @classmethod
     def custom_delete(cls, **kwargs: Dict[str, Any]):
         """
         Deletes an instance of the class Based
