@@ -12,4 +12,4 @@ class ProjectSerializer(serializers.ModelSerializer):
         """Meta class"""
         model = Project
         fields = '__all__'
-        read_only_fields = ('id', 'created_at', 'updated_at', 'user')
+        read_only_fields = ('id', 'created_at', 'updated_at')

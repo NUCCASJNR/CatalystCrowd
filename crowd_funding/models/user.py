@@ -24,9 +24,9 @@ class CustomUser(AbstractUser, BaseModel):
     class Meta:
         """Meta class"""
         db_table = 'users'
-
-    def __str__(self):
-        return f"Welcome to CatalystCrowd {self.username}"
+    #
+    # def __str__(self):
+    #     return f"Welcome to CatalystCrowd {self.username}"
 
     def save(self, *args, **kwargs):
         self.set_password(self.password)
