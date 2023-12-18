@@ -12,6 +12,7 @@ from crowd_funding.views.user_api_view import (
 
 from crowd_funding.views.project_api_view import (
     CountProjects,
+    CountUserProjects,
     ProjectListView,
     PostProjectView,
     GetUserProjects
@@ -27,5 +28,6 @@ urlpatterns = [
     path('api/projects/', ProjectListView.as_view()),
     path('api/add_project/', PostProjectView.as_view()),
     path('api/get_user_projects/<str:user_id>/', GetUserProjects.as_view()),
-    path('api/projects_count/', CountProjects.as_view())
+    path('api/projects_count/', CountProjects.as_view()),
+    path('api/user_projects_count/<str:user_id>', CountUserProjects.as_view())
 ]

@@ -84,3 +84,16 @@ class CountProjects(APIView):
     def get(self, request):
         """Count all the projects"""
         return JsonResponse({'No of projects': Project.count()}, status=status.HTTP_200_OK)
+
+
+class CountUserProjects(APIView):
+    """Count projects that belong to a user"""
+    def get(self, request, user_id:str):
+        """
+        Get the projects that belongs to a particular user
+        @param request: request obj
+        @param user_id: user id provided
+        @return: no of users projects
+        """
+        projects = Project.filter_count(**{'user_id': user_id})
+        return JsonResponse({f'No of projects for user with id: {user_id} is': projects})
