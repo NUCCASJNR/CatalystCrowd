@@ -21,10 +21,13 @@ class ProjectListView(APIView):
         @return: List of projects in dict format
         """
         projects = Project.get_all()
-        projects_list = [project.to_dict(project) for project in projects]
-        if projects_list:
-            return JsonResponse(projects_list, status=status.HTTP_200_OK, safe=False)
-        return JsonResponse({"status": "Oops no projects yet"})
+        projects_dict = [project.to_dict(project) for project in projects]
+        print(projects_dict)
+        for project in projects_dict:
+            user_id = CustomUser.to_dict(project['user_id'])['id']
+            project['user_id'] = user_id
+        if projects_dict:
+            return JsonResponse(projects_dict, status=status.HTTP_200_OK, safe=False)
 
 
 class PostProjectView(APIView):
@@ -49,3 +52,19 @@ class PostProjectView(APIView):
             return JsonResponse(project_dict, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetUserProjects(APIView):
+    """Get user projects view"""
+    def get(self, request, user_id):
+        """
+        List all the projects that belongs to a user
+        @param request: Request obj
+        @param user_id: User id provided
+        @return: projects in dict format
+        """
+        try:
+            projects = Project.find_obj_by(**{'user_id': user_id})
+            if projects:
+                projects_dict = Project.to_dict(projects)
+                projects_dict['user_id'] = CustomUser.to_dict()
