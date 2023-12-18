@@ -24,7 +24,7 @@ class PostUserView(APIView):
     """"User Post View"""
     def post(self, request):
         """
-        Post request handler
+        Post request handxler
         """
         serializer = UserSerializer(data=request.data)
         required_fields = ['username', 'email', 'last_name', 'first_name', 'password']
@@ -37,3 +37,21 @@ class PostUserView(APIView):
             return JsonResponse(user_dict, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetUserWithIdView(APIView):
+    """Get user based on id view"""
+    def get(self, request, user_id):
+        """
+        GET a user with id
+        @param request: Request obj
+        @param user_id: User id provided
+        @return: user object in dict format
+        """
+        try:
+            user = CustomUser.find_obj_by(**{'id': user_id})
+            if user:
+                user_dict = CustomUser.to_dict(user)
+                return JsonResponse(user_dict, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
