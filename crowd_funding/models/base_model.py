@@ -14,7 +14,7 @@ class BaseModel(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
-    updated_at = models.DateTimeField(default=datetime.now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta:
         abstract = True
@@ -24,6 +24,7 @@ class BaseModel(models.Model):
         """
         Saves an instance of the class
         """
+        # cls.updated_at = datetime.now()
         instance = cls.objects.create(**kwargs)
         return instance
 
