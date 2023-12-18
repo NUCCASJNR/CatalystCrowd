@@ -67,3 +67,10 @@ class DeleteUserWithIdView(APIView):
         @param user_id: user id provided
         @return: A 200 response message
         """
+        try:
+            user = CustomUser.find_obj_by(**{'id': user_id})
+            if user:
+                CustomUser.custom_delete(**{'id': user_id})
+                return JsonResponse({"success": f"user with id {user_id} has been deleted"}, status=status.HTTP_200_OK)
+        except ValidationError:
+            return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
