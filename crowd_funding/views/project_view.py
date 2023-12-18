@@ -15,6 +15,11 @@ from crowd_funding.models.user import CustomUser
 class ProjectListView(APIView):
     """ProjectList view"""
     def get(self, request):
+        """
+        GET all projects
+        @param request: Request obj
+        @return: List of projects in dict format
+        """
         projects = Project.get_all()
         projects_list = [project.to_dict(project) for project in projects]
         if projects_list:
