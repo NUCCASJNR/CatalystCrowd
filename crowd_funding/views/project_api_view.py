@@ -77,3 +77,10 @@ class GetUserProjects(APIView):
                 return JsonResponse({"error": f"User with id {user_id} not found"})
         except ValidationError:
             return JsonResponse({"error": "Invalid input"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CountProjects(APIView):
+    """Count all the projects"""
+    def get(self, request):
+        """Count all the projects"""
+        return JsonResponse({'No of projects': Project.count()}, status=status.HTTP_200_OK)
