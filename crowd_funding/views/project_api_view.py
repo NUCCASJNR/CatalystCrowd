@@ -56,15 +56,24 @@ class PostProjectView(APIView):
 
 class GetUserProjects(APIView):
     """Get user projects view"""
+
     def get(self, request, user_id):
         """
-        List all the projects that belongs to a user
+        List all the projects that belong to a user
         @param request: Request obj
         @param user_id: User id provided
         @return: projects in dict format
         """
         try:
-            projects = Project.find_obj_by(**{'user_id': user_id})
-            if projects:
-                projects_dict = Project.to_dict(projects)
-                projects_dict['user_id'] = CustomUser.to_dict()
+            user = CustomUser.find_obj_by(**{'id': user_id})
+            if user:
+                projects = Project.find_objs_by(**{'user_id': user_id})
+                if projects.exists():
+                    project_serializer = ProjectSerializer(projects, many=True)
+                    return JsonResponse(project_serializer.data, safe=False)
+                else:
+                    return JsonResponse({"error": f"No projects yet for user with id: {user_id}"})
+            else:
+                return JsonResponse({"error": f"User with id {user_id} not found"})
+        except ValidationError:
+            return JsonResponse({"error": "Invalid input"}, status=status.HTTP_400_BAD_REQUEST)
