@@ -43,6 +43,15 @@ class BaseModel(models.Model):
         instance.delete()
 
     @classmethod
+    def custom_update(cls, filter_kwargs: Dict[str, Any], update_kwargs: Dict[str, Any]):
+        """
+        Updates an instance of the class based on the filter_kwargs and update_kwargs.
+        """
+        instance = cls.objects.filter(**filter_kwargs)
+        instance.update(**update_kwargs)
+        return cls.objects.get(**filter_kwargs)  # Return the updated instance
+
+    @classmethod
     def find_objs_by(cls, **kwargs: Dict[str, Any]):
         """
         Finds an instance of the class Based
@@ -101,4 +110,4 @@ class BaseModel(models.Model):
             model_dict[field_name] = field_value
             
         return model_dict
-    
+

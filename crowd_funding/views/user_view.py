@@ -74,3 +74,28 @@ class DeleteUserWithIdView(APIView):
                 return JsonResponse({"success": f"user with id {user_id} has been deleted"}, status=status.HTTP_200_OK)
         except ValidationError:
             return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
+
+
+class UpdateUserWithIdView(APIView):
+    """Update a user based on id view"""
+    def put(self, request, user_id):
+        """
+        Update a user with id
+        @param request: Request obj
+        @param user_id: User id provided
+        @return: Updated user obj in dict format
+        """
+        try:
+            user = CustomUser.find_obj_by(**{'id': user_id})
+            if user:
+                serializer = UserSerializer(user, data=request.data, partial=True)
+                if serializer.is_valid():
+                    filter_kwargs = {'id': user_id}
+                    update_kwargs = serializer.validated_data
+                    updated_user = CustomUser.custom_update(filter_kwargs, update_kwargs)
+                    updated_user_dict = CustomUser.to_dict(updated_user)
+                    return JsonResponse(updated_user_dict, status=status.HTTP_202_ACCEPTED)
+                else:
+                    return JsonResponse({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
