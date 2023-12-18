@@ -99,3 +99,10 @@ class UpdateUserWithIdView(APIView):
                     return JsonResponse({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         except ValidationError:
             return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
+
+
+class CountUsers(APIView):
+    """Count users view"""
+    def get(self, request):
+        """count users"""
+        return JsonResponse({'No of users': CustomUser.count()})
