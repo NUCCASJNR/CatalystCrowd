@@ -14,6 +14,7 @@ from crowd_funding.models.user import CustomUser
 
 class ProjectListView(APIView):
     """ProjectList view"""
+
     def get(self, request):
         """
         GET all projects
@@ -32,6 +33,7 @@ class ProjectListView(APIView):
 
 class PostProjectView(APIView):
     """Project Post View"""
+
     def post(self, request):
         """
         Post request handler
@@ -81,6 +83,7 @@ class GetUserProjects(APIView):
 
 class CountProjects(APIView):
     """Count all the projects"""
+
     def get(self, request):
         """Count all the projects"""
         return JsonResponse({'No of projects': Project.count()}, status=status.HTTP_200_OK)
@@ -88,7 +91,8 @@ class CountProjects(APIView):
 
 class CountUserProjects(APIView):
     """Count projects that belong to a user"""
-    def get(self, request, user_id:str):
+
+    def get(self, request, user_id: str):
         """
         Get the projects that belongs to a particular user
         @param request: request obj
