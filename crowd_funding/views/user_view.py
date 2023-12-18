@@ -8,6 +8,7 @@ from rest_framework import status
 from crowd_funding.models.user import CustomUser
 from crowd_funding.serializers.user_serializer import UserSerializer
 from django.http import JsonResponse
+from django.core.exceptions import ValidationError
 
 
 class UserListView(APIView):
@@ -53,5 +54,16 @@ class GetUserWithIdView(APIView):
             if user:
                 user_dict = CustomUser.to_dict(user)
                 return JsonResponse(user_dict, status=status.HTTP_200_OK)
-        except CustomUser.DoesNotExist:
+        except ValidationError:
             return JsonResponse({'error': f"User with id {user_id} doesn't exist"})
+
+
+class DeleteUserWithIdView(APIView):
+    """Delete a user based on id view"""
+    def delete(self, request, user_id):
+        """
+        Delete a user with id
+        @param request: Request obj
+        @param user_id: user id provided
+        @return: A 200 response message
+        """
