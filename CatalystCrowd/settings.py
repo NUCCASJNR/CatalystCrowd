@@ -72,12 +72,10 @@ TEMPLATES = [
     },
 ]
 
-# STATICFILES_DIRS = [
-#     'crowd_funding/static',  # Your other static directories
-#     'crowd_funding/templates/crowd_funding/admin/assets/',  # Add this line
-# ]
-#
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+AUTHENTICATION_BACKENDS = (
+    'crowd_funding.views.auth.EmailOrUsernameModelBackend',
+)
+
 WSGI_APPLICATION = 'CatalystCrowd.wsgi.application'
 
 
