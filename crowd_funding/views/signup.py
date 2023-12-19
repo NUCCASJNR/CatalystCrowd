@@ -12,6 +12,7 @@ def index(request):
     """Index view"""
     return render(request, 'crowd_funding/index.html')
 
+
 def signup(request):
     """
     Handles user signup

@@ -21,9 +21,10 @@
       </a>
     </div>
     <div class="card-body" >
-      <form action="auth/signup" method="post">
+      <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="First Name">
+          <input type="text"  name="first_name" class="form-control" placeholder="First Name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -31,7 +32,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Last Name">
+          <input type="text" name="last_name" class="form-control" placeholder="Last Name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -39,7 +40,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Email">
+          <input type="text" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-at"></span>
@@ -47,7 +48,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" name='username' class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -55,7 +56,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password1" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -63,7 +64,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Confirm Password">
+          <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
