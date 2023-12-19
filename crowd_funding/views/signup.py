@@ -6,6 +6,7 @@
 from django.shortcuts import render, redirect, reverse
 from crowd_funding.forms.signup import SignupForm, CustomUser
 from django.contrib import messages
+from .login import dashboard
 
 
 def index(request):
@@ -46,7 +47,7 @@ def signup(request):
 
             if user:
                 messages.success(request, 'Account created successfully')
-                return redirect(reverse('dashboard', kwargs={'user_id': user.id}))
+                return redirect(reverse(dashboard, kwargs={'user_id': user.id}))
             else:
                 print(form.errors)
         else:
