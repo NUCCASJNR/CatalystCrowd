@@ -6,7 +6,8 @@
 from django.shortcuts import render, redirect, reverse
 from crowd_funding.forms.signup import SignupForm, CustomUser
 from django.contrib import messages
-from .login import dashboard
+from .login import dashboard, login
+from .user_api_view import GetUserWithIdView
 
 
 def index(request):

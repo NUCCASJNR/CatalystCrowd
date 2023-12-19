@@ -34,5 +34,6 @@ urlpatterns = [
     path('api/user_projects_count/<str:user_id>', CountUserProjects.as_view()),
     path('', index, name='index'),
     path('auth/signup', signup, name='signup'),
-    path('dashboard', dashboard, name='dashboard')
+    path('dashboard', dashboard, name='dashboard'),
+    path('auth/login', login, name='login')
 ]
