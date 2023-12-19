@@ -19,10 +19,14 @@ def login(request):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
                 user = authenticate(username=username, password=password)
+                print("User logged in:", request.user)
                 if user:
+                    print(f'Successful login by {username}')
                     auth_login(request, user)
+                    print("Redirecting to dashboard")
                     messages.success(request, f'Hi {username.title()}, Welcome Back!')
-                    return redirect('dashboard')
+                    print("Redirecting to dashboard")
+                    return redirect('crowd_funding.dashboard')
             except Exception as e:
                 messages.error(request, str(e))
     else:

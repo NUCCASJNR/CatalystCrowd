@@ -22,6 +22,7 @@
             </div>
             <div class="card-body" >
                <form action="{%  url 'login' %}" method="post">
+                   {% csrf_token %}
                   <div class="input-group mb-3">
                      <input type="text" name="username" class="form-control" placeholder="Username Or Email">
                      <div class="input-group-append">
@@ -38,17 +39,17 @@
                         </div>
                      </div>
                   </div>
-                  <div class="input-group mb-3">
-                        <select class="form-control">
-                            <option>Admin</option>
-                            <option>Member</option>
-                        </select>
-                        <div class="input-group-append">
-                        <div class="input-group-text">
-                           <span class="fas fa-users"></span>
-                        </div>
-                     </div>
-                  </div>
+{#                  <div class="input-group mb-3">#}
+{#                        <select class="form-control">#}
+{#                            <option>Admin</option>#}
+{#                            <option>Member</option>#}
+{#                        </select>#}
+{#                        <div class="input-group-append">#}
+{#                        <div class="input-group-text">#}
+{#                           <span class="fas fa-users"></span>#}
+{#                        </div>#}
+{#                     </div>#}
+{#                  </div>#}
                   <div class="row">
                      <div class="col-6 offset-3">
                         <button type="submit" class="btn btn-block" style="background-color: rgb(240, 60, 2);">Login</button>
