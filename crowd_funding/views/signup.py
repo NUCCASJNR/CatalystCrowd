@@ -8,4 +8,4 @@ from django.shortcuts import render, redirect, reverse
 
 def index(request):
     """Index view"""
-    return render(request, 'crowd_funding/member/profile.html')
+    return render(request, 'crowd_funding/member/campaign-list.html')
