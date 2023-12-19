@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from crowd_funding.forms.login import User, LoginForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 
 def login(request):
@@ -27,3 +28,8 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'crowd_funding/login.html', {'form': form})
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    return render(request, 'crowd_funding/member/dashboard.html')
