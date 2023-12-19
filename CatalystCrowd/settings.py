@@ -72,6 +72,12 @@ TEMPLATES = [
     },
 ]
 
+# STATICFILES_DIRS = [
+#     'crowd_funding/static',  # Your other static directories
+#     'crowd_funding/templates/crowd_funding/admin/assets/',  # Add this line
+# ]
+#
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 WSGI_APPLICATION = 'CatalystCrowd.wsgi.application'
 
 
