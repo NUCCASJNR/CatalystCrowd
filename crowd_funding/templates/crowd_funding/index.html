@@ -53,15 +53,15 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">CrowdFunding</a></h1>
+        <h1 class="text-light"><a href="{% url 'index' %}">CrowdFunding</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a class="active" href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="campaign-list.html">List of Campaign</a></li>
           <li><a href="login.html">Login</a></li>

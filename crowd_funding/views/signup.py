@@ -8,12 +8,7 @@ from crowd_funding.forms.signup import SignupForm, CustomUser
 from django.contrib import messages
 from .login import dashboard, login
 from django.contrib.auth import login as auth_login
-from .user_api_view import GetUserWithIdView
-
-
-def index(request):
-    """Index view"""
-    return render(request, 'crowd_funding/index.html')
+from .utils import index
 
 
 def signup(request):
@@ -22,7 +17,8 @@ def signup(request):
     @param request: Request obj
     @return: redirect to user's dashboard if signup was successful
     """
-
+    if request.user.is_authenticated:
+        return redirect(dashboard)
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
