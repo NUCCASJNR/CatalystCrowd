@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "project_name": "Project 1",
-    "user_id": "87279d92-0cdb-47e7-8c13-1fdf5f1214e6",
+    "user_id": "0ca335e3-ce14-4a9e-8481-d0b3e5506e2a",
     "description": "Project 1 description",
     "target_amount": 1000,
     "start_date": "2019-01-01",
