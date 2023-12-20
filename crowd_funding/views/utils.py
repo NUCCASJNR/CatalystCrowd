@@ -14,3 +14,8 @@ def index(request):
 def about(request):
     """About view"""
     return render(request, 'crowd_funding/about.html')
+
+
+def contact(request):
+    """Contact view"""
+    return render(request, 'crowd_funding/contact.html')
