@@ -73,9 +73,10 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = (
+    # 'django.contrib.auth.backends.ModelBackend',
     'crowd_funding.views.auth.EmailOrUsernameModelBackend',
-    'django.contrib.auth.backends.ModelBackend',
 )
+AUTH_USER_MODEL = 'crowd_funding.CustomUser'
 
 WSGI_APPLICATION = 'CatalystCrowd.wsgi.application'
 
@@ -130,7 +131,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-LOGIN_REDIRECT_URL = '/dashboard'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

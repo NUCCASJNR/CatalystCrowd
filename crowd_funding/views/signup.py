@@ -6,7 +6,8 @@
 from django.shortcuts import render, redirect, reverse
 from crowd_funding.forms.signup import SignupForm, CustomUser
 from django.contrib import messages
-from .login import dashboard, login, auth_login
+from .login import dashboard, login
+from django.contrib.auth import login as auth_login
 from .user_api_view import GetUserWithIdView
 
 
@@ -43,20 +44,15 @@ def signup(request):
                 messages.error(request, 'Email already exists')
             if CustomUser.find_obj_by(**{'username': username}):
                 messages.error(request, 'Username already exists')
-
             user = CustomUser.custom_save(**user_dict)
-
-            if user:
-                messages.success(request, 'Account created successfully')
-                auth_login(request, user)
-                return redirect(dashboard)
-            else:
-                print(form.errors)
+            print("User object before saving:", user)
+            messages.success(request, 'Account created successfully')
+            auth_login(request, user)
+            return redirect(dashboard)
         else:
-            # The form is not valid, render the form with errors
-            messages.error(request, 'Invalid form submission')
+            print(form.errors)
+
     else:
-        # This is a GET request, instantiate a blank form
         form = SignupForm()
 
     return render(request, 'crowd_funding/signup.html', {'form': form})

@@ -19,16 +19,13 @@ def login(request):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
                 user = authenticate(username=username, password=password)
-                print("User logged in:", request.user)
+                print("User logged in:", str(request.user))  # Use UUID instead of ID
                 if user:
-                    print(f'Successful login by {username}')
                     auth_login(request, user)
-                    print("Redirecting to dashboard")
-                    messages.success(request, f'Hi {username.title()}, Welcome Back!')
-                    print("Redirecting to dashboard")
-                    return redirect('crowd_funding.dashboard')
+                    messages.success(request, f'Hi {username.title()} Welcome to catalyst crowd')
+                    return redirect('dashboard')
             except Exception as e:
-                messages.error(request, str(e))
+                print(request, str(e))
     else:
         form = LoginForm()
     return render(request, 'crowd_funding/login.html', {'form': form})
@@ -36,4 +33,6 @@ def login(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'crowd_funding/member/dashboard.html')
+    print(request.session.items())
+    print(request.user.id)
+    return render(request, 'crowd_funding/dashboard.html')

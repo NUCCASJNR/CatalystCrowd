@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from django.contrib.auth.backends import ModelBackend
-from crowd_funding.models.user import CustomUser as User
+from crowd_funding.models.user import CustomUser
 
 
 class EmailOrUsernameModelBackend(ModelBackend):
@@ -16,8 +16,8 @@ class EmailOrUsernameModelBackend(ModelBackend):
             kwargs = {'username': username}
 
         try:
-            user = User.objects.get(**kwargs)
+            user = CustomUser.objects.get(**kwargs)
             if user.check_password(password):
                 return user
-        except User.DoesNotExist:
+        except CustomUser.DoesNotExist:
             return None
