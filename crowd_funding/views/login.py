@@ -8,6 +8,8 @@ from crowd_funding.forms.login import User, LoginForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from crowd_funding.models.project import Project
+from crowd_funding.models.contribution import Contribution
+
 
 def login(request):
     """Login view handler"""
@@ -36,4 +38,6 @@ def dashboard(request):
     query = {'user_id': request.user.id}
     print(request.user.id)
     projects_count = Project.filter_count(**query)
-    return render(request, 'crowd_funding/dashboard.html', {'projects_count': projects_count})
+    contributions_count = Contribution.filter_count(**{'user_id': request.user.id})
+    return render(request, 'crowd_funding/dashboard.html', {'projects_count': projects_count,
+                                                            'contributions_count': contributions_count})
