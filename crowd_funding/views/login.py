@@ -25,7 +25,8 @@ def login(request):
                 if user:
                     auth_login(request, user)
                     messages.success(request, f'Hi {username.title()} Welcome to catalyst crowd')
-                    return redirect('dashboard')
+                    next_url = request.GET.get('next', dashboard)
+                    return redirect(next_url)
             except Exception as e:
                 print(request, str(e))
     else:
