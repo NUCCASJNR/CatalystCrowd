@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../../static/crowd_funding/assets/img/favicon.png" rel="icon">
+  <link href="../../../crowd_funding/static/assets/img/favicon.png" rel="icon">
   <link href="../../static/crowd_funding/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -134,66 +134,28 @@
 
       </div>
     </section>
-
     <section id="pricing" class="pricing">
       <div class="container">
-
         <div class="row">
-
+            {% for project in projects  %}
           <div class="col-lg-4 col-md-6">
             <div class="box" data-aos="fade-right">
               <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="../../static/crowd_funding/assets/img/3.jpg" width="380"/></center>
+                  <img src="{{ project.project_picture.url }}" width="380"/></center>
               </div>
-              <h2 style="color:rgb(43, 35, 32);">Separate families my on drawings do oh offended</h2>
+              <h2 style="color:rgb(43, 35, 32);">{{ project.description }}</h2>
               <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 5,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 50,000.00</small></p>
+                <p><strong>Raised:</strong><small class="text-success"> {{ project.raised_amount }}</small></p>
+                <p><strong>Goal:</strong><small class="text-danger"> {{ project.target_amount }}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Donate Now</a>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                <center>
-                  <img src="../../static/crowd_funding/assets/img/1.jpg" width="380"/></center>
-              </div>
-              <h2 style="color:rgb(43, 35, 32);">Must you with him from him her were more</h2>
-              
-              <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 9,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 90,000.00</small></p>
-              </div>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                <center>
-                  <img src="../../static/crowd_funding/assets/img/2.jpg" width="380"/></center>
-              </div>
-              <h2 style="color:rgb(43, 35, 32);">On it differed repeated wandered required in</h2>
-              
-              <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 10,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 100,000.00</small></p>
-              </div>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-              </div>
-            </div>
-          </div>
-
-
+             {% endfor %}
         </div>
-
       </div>
     </section>
 

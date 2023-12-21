@@ -4,11 +4,15 @@
 
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from crowd_funding.models.project import Project
 
 
 def index(request):
-    """Index view"""
-    return render(request, 'crowd_funding/index.html')
+    """Index view
+    @param request: Request obj
+    """
+    projects = Project.get_all().order_by('-created_at')
+    return render(request, 'crowd_funding/index.html', {'projects': projects})
 
 
 def about(request):
