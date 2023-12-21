@@ -22,6 +22,7 @@ def create_project(request):
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
             project_picture = form.cleaned_data['project_picture']
+            category = form.cleaned_data['category']
 
             project_dict = {
                 'project_name': project_name,
@@ -29,6 +30,7 @@ def create_project(request):
                 'target_amount': target_amount,
                 'start_date': start_date,
                 'end_date': end_date,
+                'category': category,
                 'project_picture': project_picture
             }
             project = Project.custom_save(**project_dict)
