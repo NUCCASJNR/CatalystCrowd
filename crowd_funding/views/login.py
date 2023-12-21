@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from crowd_funding.models.project import Project
 from crowd_funding.models.contribution import Contribution
+from .utils import index
 
 
 def login(request):
@@ -36,9 +37,24 @@ def login(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+    """Dashboard view
+    @param request: Request obj
+    """
     query = {'user_id': request.user.id}
     print(request.user.id)
     projects_count = Project.filter_count(**query)
     contributions_count = Contribution.filter_count(**{'user_id': request.user.id})
     return render(request, 'crowd_funding/dashboard.html', {'projects_count': projects_count,
                                                             'contributions_count': contributions_count})
+
+
+@login_required(login_url='login')
+def logout(request):
+    """
+    Logout view
+    @param request:
+    @return:
+    """
+    auth_logout(request)
+    messages.success(request, 'You have been successfully logged out.')
+    return redirect(index)

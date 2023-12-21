@@ -19,7 +19,7 @@ from crowd_funding.views.project_api_view import (
 )
 
 from crowd_funding.views.signup import index, signup
-from crowd_funding.views.login import dashboard, login
+from crowd_funding.views.login import dashboard, login, logout
 from crowd_funding.views.utils import about, contact
 from crowd_funding.views.project import create_project
 urlpatterns = [
@@ -40,5 +40,6 @@ urlpatterns = [
     path('auth/login', login, name='login'),
     path('about', about, name='about'),
     path('contact', contact, name='contact'),
-    path('create_project', create_project, name='create_project')
+    path('create_project', create_project, name='create_project'),
+    path('auth/logout', logout, name='logout')
 ]

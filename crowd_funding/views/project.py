@@ -9,6 +9,7 @@ from crowd_funding.models.project import Project
 from .login import login, dashboard
 
 
+@login_required(login_url=login)
 def create_project(request):
     """Create project view"""
     if not request.user.is_authenticated:

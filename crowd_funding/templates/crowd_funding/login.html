@@ -21,7 +21,7 @@
                </a>
             </div>
             <div class="card-body" >
-               <form action="{%  url 'login' %}?next={{ request.path }}" method="post">
+               <form action="{%  url 'login' %}" method="post">
                    {% csrf_token %}
                   <div class="input-group mb-3">
                      <input type="text" name="username" class="form-control" placeholder="Username Or Email">
