@@ -9,18 +9,23 @@ from crowd_funding.models.user import CustomUser
 from decimal import Decimal
 
 
+def default_project_picture():
+    return '/CatalystCrowd/crowd_funding/static/crowd_funding/assets/img/logo.png'
+
+
 class Project(BaseModel):
     """
     Project class docs soon ....
     """
     user_id = models.ForeignKey(CustomUser,  on_delete=models.CASCADE, blank=False, db_column='user_id')
     project_name = models.CharField(max_length=200, blank=False)
+    category = models.CharField(max_length=255, default='miscellaneous')
     description = models.TextField(blank=False)
     target_amount = models.DecimalField(max_digits=10, decimal_places=2)
     raised_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     start_date = models.DateTimeField(blank=False)
     end_date = models.DateTimeField(blank=False)
-    project_picture = models.ImageField(blank=True)
+    project_picture = models.ImageField(blank=True, default=default_project_picture)
     amount_left = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:

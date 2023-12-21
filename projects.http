@@ -4,7 +4,7 @@ POST http://localhost:8000/api/add_project/
 Content-Type: application/json
 
 {
-    "project_name": "Project 1",
+    "project_name": "Project 3",
     "user_id": "0ca335e3-ce14-4a9e-8481-d0b3e5506e2a",
     "description": "Project 1 description",
     "target_amount": 1000,

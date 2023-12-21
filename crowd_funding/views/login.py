@@ -21,7 +21,7 @@ def login(request):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
                 user = authenticate(username=username, password=password)
-                print("User logged in:", str(request.user))  # Use UUID instead of ID
+                # print("User logged in:", str(request.user))  # Use UUID instead of ID
                 if user:
                     auth_login(request, user)
                     messages.success(request, f'Hi {username.title()} Welcome to catalyst crowd')
