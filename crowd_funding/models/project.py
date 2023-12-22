@@ -7,10 +7,16 @@ Project Model
 from crowd_funding.models.base_model import BaseModel, models
 from crowd_funding.models.user import CustomUser
 from decimal import Decimal
+from crowd_funding.storage import ProjectImageStorage
 
 
 def default_project_picture():
     return '/CatalystCrowd/crowd_funding/static/crowd_funding/assets/img/logo.png'
+
+
+def project_image_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/project_images/<project_id>/<filename>
+    return f'project_images/{instance.id}/{filename}'
 
 
 class Project(BaseModel):
@@ -25,7 +31,8 @@ class Project(BaseModel):
     raised_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     start_date = models.DateTimeField(blank=False)
     end_date = models.DateTimeField(blank=False)
-    project_picture = models.ImageField(blank=True, default=default_project_picture)
+    project_picture = models.ImageField(blank=True, default=default_project_picture,
+                                        upload_to=project_image_path)
     amount_left = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:
@@ -33,6 +40,11 @@ class Project(BaseModel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.raised_amount is None:
-            self.raised_amount = Decimal(0)
+
+        # Set default values if None
+        self.raised_amount = self.raised_amount or 0
+        self.target_amount = self.target_amount or 0
+
+        # Calculate amount_left
         self.amount_left = Decimal(self.target_amount - self.raised_amount)
+

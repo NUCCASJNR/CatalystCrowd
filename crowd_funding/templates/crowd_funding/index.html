@@ -136,25 +136,31 @@
     </section>
     <section id="pricing" class="pricing">
       <div class="container">
-        <div class="row">
-            {% for project in projects  %}
-          <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+        <div class="row" enctype="multipart/form-data">
+            {% for project in projects %}
+    <div class="col-lg-4 col-md-6">
+        <div class="box" data-aos="fade-right">
+            <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="{{ project.project_picture.url }}" width="380"/></center>
-              </div>
-              <h2 style="color:rgb(43, 35, 32);">{{ project.description }}</h2>
-              <div class="float-left">
+                    {% if project.project_picture %}
+                        <img src="{{ project.project_picture.url }}" width="380"/>
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </center>
+            </div>
+            <h2 style="color:rgb(43, 35, 32);">{{ project.description }}</h2>
+            <div class="float-left">
                 <p><strong>Raised:</strong><small class="text-success"> {{ project.raised_amount }}</small></p>
                 <p><strong>Goal:</strong><small class="text-danger"> {{ project.target_amount }}</small></p>
-              </div>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-              </div>
             </div>
-          </div>
-             {% endfor %}
+            <div class="btn-wrap">
+                <a href="#" class="btn-buy">Donate Now</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
         </div>
       </div>
     </section>

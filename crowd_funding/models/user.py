@@ -4,6 +4,12 @@
 
 from crowd_funding.models.base_model import BaseModel, models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from crowd_funding.storage import UserProfileImageStorage
+
+
+def user_profile_image_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_profile_images/<user_id>/<filename>
+    return f'user_profile_images/{instance.id}/{filename}'
 
 
 class CustomUser(AbstractUser, BaseModel):
@@ -14,7 +20,7 @@ class CustomUser(AbstractUser, BaseModel):
     password = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    profile_picture = models.ImageField(max_length=255, null=True)
+    profile_picture = models.ImageField(max_length=255, null=True, upload_to=user_profile_image_path)
 
     groups = models.ManyToManyField(Group, blank=True, related_name='crowdfunding_user_groups')
 

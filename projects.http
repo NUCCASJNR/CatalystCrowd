@@ -9,7 +9,8 @@ Content-Type: application/json
     "description": "Project 1 description",
     "target_amount": 1000,
     "start_date": "2019-01-01",
-    "end_date": "2019-01-01"
+    "end_date": "2019-01-01",
+    "project_picture": "/home/alareef/CatalystCrowd/Screenshot_from_2023-12-13_23-07-41.png"
 }
 
 

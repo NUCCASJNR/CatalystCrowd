@@ -150,41 +150,48 @@
             <!-- jquery validation -->
             <div class="card card-success">
               <!-- form start -->
-              <form role="form" id="quickForm" method="post" action="{% url 'create_project' %}">
-                <div class="card-body">
+              <form role="form" id="quickForm" enctype="multipart/form-data" method="post" action="{% url 'create_project' %}">
+                {% csrf_token %}
+                  <div class="card-body">
                   <div class="row">
                   <div class="col-md-4">
                   <div class="form-group">
                     <label>Category</label>
-                    <input type="text" name="lname" class="form-control" placeholder="Category">
+                    <input type="text" name="category" class="form-control" placeholder="Category">
                   </div></div>
                   <div class="col-md-4">
                   <div class="form-group">
                     <label>Campaign Name</label>
-                    <input type="text" name="fname" class="form-control" placeholder="Campaign Name">
+                    <input type="text" name="project_name" class="form-control" placeholder="Campaign Name">
                   </div></div>
                   <div class="col-md-4">
                   <div class="form-group">
                     <label>Description</label>
-                    <input type="text" name="mname" class="form-control" placeholder="Description">
+                    <input type="text" name="description" class="form-control" placeholder="Description">
                   </div>
                   </div>
                   <div class="col-md-4">
                   <div class="form-group">
                     <label>Target Amount</label>
-                    <input type="number" name="email" class="form-control" placeholder="ex. 20,000.00">
+                    <input type="number" name="target_amount" class="form-control" placeholder="ex. 20,000.00">
                   </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Deadline</label>
-                      <input type="date" name="profile" class="form-control">
+                      <label for="exampleInputPassword1">Start Date</label>
+                      <input type="date" name="end_date" class="form-control">
+                    </div>
+                  </div>
+                      <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">End Date</label>
+                      <input type="date" name="start_date" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputPassword1">Banner </label>
-                      <input type="file" name="identity" class="form-control">
+                      <input type="file" name="project_picture" class="form-control">
                     </div>
                   </div>
                   </div>

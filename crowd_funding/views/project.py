@@ -5,7 +5,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from crowd_funding.forms.project import ProjectForm
-from crowd_funding.models.project import Project
+from crowd_funding.models.project import Project, CustomUser
 from .login import login, dashboard
 
 
@@ -15,7 +15,7 @@ def create_project(request):
     if not request.user.is_authenticated:
         return redirect(login)
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             project_name = form.cleaned_data['project_name']
             description = form.cleaned_data['description']
@@ -24,7 +24,7 @@ def create_project(request):
             end_date = form.cleaned_data['end_date']
             project_picture = form.cleaned_data['project_picture']
             category = form.cleaned_data['category']
-
+            user = CustomUser.find_obj_by(**{'id': request.user.id})
             project_dict = {
                 'project_name': project_name,
                 'description': description,
@@ -32,7 +32,8 @@ def create_project(request):
                 'start_date': start_date,
                 'end_date': end_date,
                 'category': category,
-                'project_picture': project_picture
+                'project_picture': project_picture,
+                'user_id': user
             }
             project = Project.custom_save(**project_dict)
             print(project)

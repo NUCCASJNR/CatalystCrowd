@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from os import getenv
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -72,6 +73,12 @@ TEMPLATES = [
         },
     },
 ]
+# settings.py
+# PROJECT_IMAGE_STORAGE = 'crowd_funding.storage_backends.ProjectImageStorage'
+# USER_PROFILE_IMAGE_STORAGE = 'crowd_funding.storage_backends.UserProfileImageStorage'
+#
+# # Use the configured storage for the media files
+# DEFAULT_FILE_STORAGE = 'crowd_funding.storage.ProjectImageStorage'
 
 AUTHENTICATION_BACKENDS = (
     # 'django.contrib.auth.backends.ModelBackend',
@@ -137,3 +144,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
