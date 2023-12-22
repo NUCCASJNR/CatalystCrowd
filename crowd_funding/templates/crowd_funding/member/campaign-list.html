@@ -141,6 +141,7 @@
                </div>
             </div>
          </div>
+          {% for project in projects %}
          <section class="content">
             <div class="container-fluid">
                <div class="card card-info elevation-2">
@@ -155,40 +156,16 @@
                               <th>Target Amount</th>
                               <th>Deadline</th>
                               <th>Banner</th>
-                              <th>Status</th>
-                              <th>Action</th>
                            </tr>
                         </thead>
                         <tbody>
                           <tr>
-                           <td>Category 1</td>
-                           <td>Campaign 1</td>
-                           <td>Description</td>
-                           <td>Php 50,000.00</td>
-                           <td>Oct 30, 2021</td>
-                             <td><img src="assets/img/logo.png" width="100" alt="User Image"></td>
-                             <td><span class="badge bg-success">approve</span></td>
-                             <td class="text-right">
-                                <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                      class="fa fa-user-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                      class="fa fa-trash-alt"></i></a>
-                             </td>
-                          </tr>
-                          <tr>
-                           <td>Category 2</td>
-                           <td>Campaign 2</td>
-                           <td>Description</td>
-                           <td>Php 100,000.00</td>
-                           <td>Nov 30, 2021</td>
-                             <td><img src="assets/img/logo.png" width="100" alt="User Image"></td>
-                             <td><span class="badge bg-success">approve</span></td>
-                             <td class="text-right">
-                                <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                      class="fa fa-user-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                      class="fa fa-trash-alt"></i></a>
-                             </td>
+                           <td>{{ project.category }}</td>
+                           <td>{{ project.project_name }}</td>
+                           <td>{{ project.description }}</td>
+                           <td>{{ project.target_amount }}</td>
+                           <td>{{ project.end_date }}</td>
+                             <td><img src={{ project.project_picture.url }} width="100" alt="User Image"></td>
                           </tr>
                         </tbody>
                      </table>
@@ -196,23 +173,8 @@
                </div>
             </div>
          </section>
+      {% endfor %}
       </div>
-   </div>
-   <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-         <div class="modal-content">
-            <div class="modal-body text-center">
-               <img src="assets/img/sent.png" alt="" width="50" height="46">
-               <h3>Are you sure want to delete this Operator?</h3>
-               <div class="m-t-20">
-                  <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                  <button type="submit" class="btn btn-danger">Delete</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-  <!-- jQuery -->
   <script src="assets/plugins/jquery/jquery.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
@@ -234,6 +196,8 @@
          $("#example1").DataTable();
       });
    </script>
+  </div>
 </body>
+
 
 </html>

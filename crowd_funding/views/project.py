@@ -45,3 +45,14 @@ def create_project(request):
         form = ProjectForm()
 
     return render(request, 'crowd_funding/member/add-campaign.html', {'form': form})
+
+
+@login_required(login_url=login)
+def list_projects(request):
+    """
+    List project view
+    @param request: Request obj
+    @return: All the projects
+    """
+    projects = Project.find_objs_by(**{'user_id': request.user.id}).order_by('-created_at')
+    return render(request, 'crowd_funding/member/campaign-list.html', {'projects': projects})
