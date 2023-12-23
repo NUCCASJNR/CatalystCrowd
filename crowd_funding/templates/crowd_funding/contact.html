@@ -46,12 +46,11 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a  class="active" href="contact.html">Contact</a></li>
-          <li><a href="campaign-list.html">List of Campaign</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="#">/</a></li>
-          <li><a href="contact.html">Register</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a  class="active" href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="{% url 'all_projects' %}">List of Campaign</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Register</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -67,7 +66,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Contact</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li>Contact</li>
           </ol>
         </div>
