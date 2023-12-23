@@ -164,7 +164,7 @@
                            <td>{{ project.project_name }}</td>
                            <td>{{ project.description }}</td>
                            <td>{{ project.target_amount }}</td>
-                           <td>{{ project.end_date }}</td>
+                           <td>{{ project.end_date|date:"F d, Y" }}</td>
                              <td><img src={{ project.project_picture.url }} width="100" alt="User Image"></td>
                           </tr>
                         </tbody>
