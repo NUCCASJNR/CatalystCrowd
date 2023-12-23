@@ -14,7 +14,8 @@ from .utils import index
 
 def login(request):
     """Login view handler"""
-
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():

@@ -54,22 +54,33 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="{% url 'index' %}">CrowdFunding</a></h1>
+        <h1 class="text-light"><a href="{% url 'index' %}">Catalyst Crowd</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
+          {% if not request.user.is_authenticated %}
         <ul>
           <li><a class="active" href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'contact' %}">Contact</a></li>
-          <li><a href="campaign-list.html">List of Campaign</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="#">/</a></li>
-          <li><a href="contact.html">Register</a></li>
+          <li><a href="{% url 'all_projects' %}">List of Campaign</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Register</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
+          {% else %}
+                  <ul>
+          <li><a class="active" href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="{% url 'list_projects' %}">Your projects</a></li>
+          <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+          {% endif %}
       </nav><!-- .navbar -->
 
     </div>
