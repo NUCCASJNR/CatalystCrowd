@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,20 +34,20 @@
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i>
-      </div>
-      <div class="social-links d-none d-md-flex align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-    </div>
-  </section>
+{#  <section id="topbar" class="d-flex align-items-center">#}
+{#    <div class="container d-flex justify-content-center justify-content-md-between">#}
+{#      <div class="contact-info d-flex align-items-center">#}
+{#        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>#}
+{#        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i>#}
+{#      </div>#}
+{#      <div class="social-links d-none d-md-flex align-items-center">#}
+{#        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>#}
+{#        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>#}
+{#        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>#}
+{#        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
 
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
@@ -137,29 +138,37 @@
     <section id="pricing" class="pricing">
       <div class="container">
         <div class="row" enctype="multipart/form-data">
-            {% for project in projects %}
-    <div class="col-lg-4 col-md-6">
-        <div class="box" data-aos="fade-right">
-            <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                <center>
-                    {% if project.project_picture %}
-                        <img src="{{ project.project_picture.url }}" width="380"/>
-                    {% else %}
-                        <p>No image available</p>
-                    {% endif %}
-                </center>
-            </div>
-            <h2 style="color:rgb(43, 35, 32);">{{ project.description }}</h2>
-            <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> {{ project.raised_amount }}</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> {{ project.target_amount }}</small></p>
-            </div>
-            <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-            </div>
+             {% for project in projects %}
+            <div class="col-lg-4 col-md-6">
+    <div class="box" data-aos="fade-right">
+        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+    <center>
+        {% if project.project_picture %}
+            <img src="{{ project.project_picture.url }}" width="380"/>
+        {% else %}
+            <p><img src="{% static 'crowd_funding/assets/img/logo.png' %}"></p>
+        {% endif %}
+    </center>
+</div>
+
+        <h2 style="color:rgb(43, 35, 32);">{{ project.description }}</h2>
+        <div class="float-left">
+            <p><strong>Raised: </strong><small class="text-success">{{ project.raised_amount }}</small></p>
+            <p><strong>Goal: </strong><small class="text-danger">{{ project.target_amount }}</small></p>
+            <p><strong>Category:</strong> {{ project.category }}</p>
+            <!-- Update the Start Date and End Date sections -->
+            <p><strong>Start Date:</strong> {{ project.start_date|date:"F d, Y" }}</p>
+            <p><strong>End Date:</strong> {{ project.end_date|date:"F d, Y" }}</p>
+            <p><strong>Amount Left: </strong><small class="text-danger">{{ project.amount_left }}</small></p>
+            <p><strong>Owner:</strong> {{ project.user_id.username }}</p>
+        </div>
+        <div class="btn-wrap">
+            <a href="#" class="btn-buy">Donate Now</a>
         </div>
     </div>
-{% endfor %}
+</div>
+
+        {% endfor %}
 
         </div>
       </div>
