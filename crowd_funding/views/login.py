@@ -27,7 +27,9 @@ def login(request):
                 if user:
                     auth_login(request, user)
                     messages.success(request, f'Hi {username.title()} Welcome to catalyst crowd')
-                    next_url = request.GET.get('next')
+                    next_url = request.POST.get('next')
+                    print(request.GET.get('next'))  # Print the 'next' parameter from the URL
+                    print(request.POST.get('next'))  # Print the 'next' parameter from the form data
                     if next_url:
                         return redirect(next_url)
                     else:
