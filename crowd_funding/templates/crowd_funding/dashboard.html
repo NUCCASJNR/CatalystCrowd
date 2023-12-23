@@ -76,6 +76,14 @@
                 </p>
               </a>
             </li>
+              <li class="nav-item">
+              <a href="{% url 'create_project' %}" class="nav-link">
+                <i class="nav-icon fa fa-tachometer-alt"></i>
+                <p>
+                  Add Project
+                </p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{% url 'list_projects' %}" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
@@ -85,7 +93,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="member/gallery.html" class="nav-link">
+              <a href="{% url 'gallery' %}" class="nav-link">
                 <i class="nav-icon fa fa-images"></i>
                 <p>
                  Gallery

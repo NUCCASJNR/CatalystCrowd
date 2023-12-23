@@ -27,7 +27,8 @@ from crowd_funding.views.utils import (
 )
 from crowd_funding.views.project import (
     create_project,
-    list_projects
+    list_projects,
+    gallery
 )
 
 urlpatterns = [
@@ -51,5 +52,6 @@ urlpatterns = [
     path('create_project', create_project, name='create_project'),
     path('auth/logout', logout, name='logout'),
     path('list_projects', list_projects, name='list_projects'),
-    path('projects', all_projects, name='all_projects')
+    path('projects', all_projects, name='all_projects'),
+    path('gallery', gallery, name='gallery')
 ]

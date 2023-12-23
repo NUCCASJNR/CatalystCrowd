@@ -34,12 +34,3 @@ def all_projects(request):
     projects = Project.get_all().order_by('-created_at')
     return render(request, 'crowd_funding/campaign-list.html', {'projects': projects})
 
-
-def gallery(request):
-    """
-    Gallery view for displaying a user projects pictures
-    @param request: Request obj
-    @return: User projects pictures
-    """
-    pictures = Project.find_objs_by(**{'user_id': request.user.id})
-    return render(request, 'crowd_funding/member/gallery.html', {'pictures': pictures})

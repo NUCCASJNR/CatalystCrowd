@@ -56,3 +56,15 @@ def list_projects(request):
     """
     projects = Project.find_objs_by(**{'user_id': request.user.id}).order_by('-created_at')
     return render(request, 'crowd_funding/member/campaign-list.html', {'projects': projects})
+
+
+@login_required(login_url=login)
+def gallery(request):
+    """
+    Gallery view for displaying a user projects pictures
+    @param request: Request obj
+    @return: User projects pictures
+    """
+    pictures = Project.find_objs_by(**{'user_id': request.user.id})
+    print(pictures)
+    return render(request, 'crowd_funding/member/gallery.html', {'pictures': pictures})
