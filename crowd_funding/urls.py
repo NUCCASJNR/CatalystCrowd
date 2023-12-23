@@ -20,8 +20,16 @@ from crowd_funding.views.project_api_view import (
 
 from crowd_funding.views.signup import index, signup
 from crowd_funding.views.login import dashboard, login, logout
-from crowd_funding.views.utils import about, contact
-from crowd_funding.views.project import create_project, list_projects
+from crowd_funding.views.utils import (
+    about,
+    contact,
+    all_projects
+)
+from crowd_funding.views.project import (
+    create_project,
+    list_projects
+)
+
 urlpatterns = [
     path('api/users/', UserListView.as_view()),
     path('api/add_user/', PostUserView.as_view()),
@@ -42,5 +50,6 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('create_project', create_project, name='create_project'),
     path('auth/logout', logout, name='logout'),
-    path('list_projects', list_projects, name='list_projects')
+    path('list_projects', list_projects, name='list_projects'),
+    path('projects', all_projects, name='all_projects')
 ]
