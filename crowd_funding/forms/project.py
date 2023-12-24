@@ -6,6 +6,7 @@ from django import forms
 from crowd_funding.models.project import Project
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from datetime import datetime
 
 
 class ProjectForm(forms.ModelForm):
@@ -29,15 +30,12 @@ class ProjectForm(forms.ModelForm):
 
         return start_date
 
-    def clean_end_date(self):
-        """
-        Validates project end date
-        @return:
-        """
-        start_date = self.cleaned_data.get('start_date')
-        end_date = self.cleaned_data.get('end_date')
+    # def clean_end_date(self):
+    #     start_date = self.cleaned_data.get('start_date')
+    #     end_date = self.cleaned_data.get('end_date')
+    #
+    #     if start_date and end_date and end_date <= start_date:
+    #         raise forms.ValidationError("End date must be after the start date.")
+    #
+    #     return end_date
 
-        if start_date and end_date and end_date <= start_date:
-            raise ValidationError("End date must be after the start date.")
-
-        return end_date

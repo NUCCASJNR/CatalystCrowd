@@ -37,7 +37,7 @@ def create_project(request):
             }
             project = Project.custom_save(**project_dict)
             print(project)
-            return redirect(dashboard)
+            return redirect('list_projects')
         else:
             # Print the form errors
             print(form.errors)
